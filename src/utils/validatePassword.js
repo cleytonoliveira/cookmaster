@@ -1,9 +1,9 @@
 const { UsersModel } = require('../models');
 
-module.exports = async (password) => {
-  const userRegistered = await UsersModel.getAllUsers();
+module.exports = async (email, password) => {
+  const userRegistered = await UsersModel.getUserByEmail(email);
 
-  const isValidPassword = userRegistered.some((user) => user.password === password);
+  const isValidPassword = userRegistered.password === password;
 
   return isValidPassword;
 };

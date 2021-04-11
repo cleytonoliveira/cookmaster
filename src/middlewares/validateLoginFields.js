@@ -5,7 +5,8 @@ const { validateEmail, validatePassword } = require('../utils');
 module.exports = rescue(async (req, _res, next) => {
   const { email, password } = req.body;
 
-  const isValidPassword = await validatePassword(password);
+  const isValidPassword = await validatePassword(email, password);
+
   const isValidEmail = validateEmail(email);
 
   if (!email || !password) {
