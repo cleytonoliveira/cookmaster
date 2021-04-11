@@ -21,8 +21,11 @@ const registerNewUser = rescue(async (req, res) => {
 
 const createAdmin = rescue(async (req, res) => {
   const { name, email, password } = req.body;
+  const { role } = req.user.data;
 
-  const userAdmin = await UsersService.createAdmin(name, email, password);
+  const userAdmin = await UsersService.createAdmin(name, email, password, role);
+  
+  if (userAdmin.error) throw Boom.forbidden(userAdmin.message);
 
   res
     .status(CREATED)

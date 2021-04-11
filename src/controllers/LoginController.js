@@ -4,9 +4,9 @@ const { LoginService } = require('../services');
 const SUCCESS = 200;
 
 const userLogin = rescue(async (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
 
-  const generateToken = await LoginService.userLogin(email, password);
+  const generateToken = await LoginService.userLogin(email);
 
   return res
     .status(SUCCESS)

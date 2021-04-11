@@ -13,10 +13,10 @@ module.exports = (req, _res, next) => {
   if (!token) return next(Boom.unauthorized('missing auth token'));
   
   try {
-    jwt.verify(token, secret, (err, email) => {
+    jwt.verify(token, secret, (err, user) => {
       if (err) return next(Boom.unauthorized('jwt malformed'));
 
-      req.email = email;
+      req.user = user;
       next();
     });
   } catch (err) {

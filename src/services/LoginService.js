@@ -1,15 +1,19 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const { UsersModel } = require('../models');
+
 const { IS_LOCAL, TOKEN_SECRET } = process.env;
 const secret = (IS_LOCAL)
   ? TOKEN_SECRET
   : 'mySecretToken';
 
-const userLogin = async (email, password) => {
+const userLogin = async (email) => {
+  const { role } = await UsersModel.getUserByEmail(email);
+
   const user = {
     email,
-    password,
+    role,
   };
 
   const jwtConfig = {

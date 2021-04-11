@@ -19,6 +19,10 @@ const getAllUsers = async () => connection()
   .then((db) => db.collection('users')
     .find().toArray());
 
+const getUserByEmail = async (email) => connection()
+  .then((db) => db.collection('users')
+    .findOne({ email }));
+
 const createAdmin = async (name, email, password) => {
   const { insertedId } = await connection()
   .then((db) => db.collection('users')
@@ -36,6 +40,7 @@ const createAdmin = async (name, email, password) => {
 
 module.exports = {
   registerNewUser,
+  getUserByEmail,
   getAllUsers,
   createAdmin,
 };
