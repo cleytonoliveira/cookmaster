@@ -7,5 +7,6 @@ const UserRouter = Router();
 UserRouter.post('/',
   validateUserFields,
   UsersController.registerNewUser);
+UserRouter.post('/admin', UsersController.createAdmin);
 
 module.exports = UserRouter;

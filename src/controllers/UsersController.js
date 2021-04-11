@@ -19,6 +19,17 @@ const registerNewUser = rescue(async (req, res) => {
     .json(newUser);
 });
 
+const createAdmin = rescue(async (req, res) => {
+  const { name, email, password } = req.body;
+
+  const userAdmin = await UsersService.createAdmin(name, email, password);
+
+  res
+    .status(CREATED)
+    .json(userAdmin);
+});
+
 module.exports = {
   registerNewUser,
+  createAdmin,
 };

@@ -16,6 +16,9 @@ const registerNewUser = async (name, email, password) => {
     .registerNewUser(name, email, password);
 };
 
+const createAdmin = async (name, email, password) => UsersModel.createAdmin(name, email, password);
+
 module.exports = {
   registerNewUser,
+  createAdmin,
 };
